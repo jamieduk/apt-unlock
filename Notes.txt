@@ -1,0 +1,33 @@
+Apt Unlock (c) J~Net 2026
+jnetai.com
+
+
+Reasons you may need to use this...
+Example errors it will fix:
+
+jay@jnetai:~$ update [sudo] password for jay: Reading package lists... Done E: Could not get lock /var/lib/apt/lists/lock. It is held by process 87807 (apt-get) N: Be aware that removing the lock file is not a solution and may break your system. E: Unable to lock directory /var/lib/apt/lists/ jay@jnetai:~$
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Usage:
+
+# Make Executable
+sudo chmod +x apt-unlock install.sh
+
+# Run to unlock
+./apt-unlock
+
+# Install using this
+
+./install.sh
+
+
+
+Or manually copy it...
+
+sudo cp apt-unlock /usr/bin/apt-unlock && sudo chmod +x /usr/bin/apt-unlock
+
+Now you can run this by typing apt-unlock!
+
+
+

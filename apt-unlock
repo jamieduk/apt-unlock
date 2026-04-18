@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# (c) J~Net 2026
+# jnetai.com
+#
+# ./apt-unlock
+#
+#
+# sudo cp apt-unlock /usr/bin/apt-unlock && sudo chmod +x /usr/bin/apt-unlock
+#
+
+lock1="/var/lib/apt/lists/lock"
+lock2="/var/lib/dpkg/lock-frontend"
+lock3="/var/cache/apt/archives/lock"
+
+kill_locks(){
+    pids=$(fuser -v $lock1 $lock2 $lock3 2>/dev/null | awk '{for(i=1;i<=NF;i++) if($i ~ /^[0-9]+$/) print $i}' | sort -u)
+
+    if [ -n "$pids" ];then
+        echo "Killing lock holders: $pids"
+        for pid in $pids;do
+            kill -15 $pid 2>/dev/null
+            sleep 1
+            kill -9 $pid 2>/dev/null
+        done
+    fi
+
+    sudo rm -f $lock1 $lock2 $lock3
+}
+
+fix_dpkg(){
+    sudo dpkg --configure -a
+    sudo apt -f install -y
+}
+
+run_update(){
+    sudo apt update
+}
+
+kill_locks
+fix_dpkg
+#run_update
