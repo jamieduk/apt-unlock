@@ -1,6 +1,7 @@
 Apt Unlock (c) J~Net 2026
 jnetai.com
 
+https://github.com/jamieduk/apt-unlock
 
 Reasons you may need to use this...
 Example errors it will fix:
