@@ -33,7 +33,7 @@ fix_dpkg(){
 }
 
 run_update(){
-    sudo apt update
+    sudo apt update  &&  sudo apt upgrade -y
 }
 
 kill_locks
